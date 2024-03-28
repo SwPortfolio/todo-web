@@ -85,7 +85,7 @@ export function Dialog(props: Props) {
                                     minHeight={52}
                                     width="100%"
                                     type="button"
-                                    onClick={() => item.onClick()}
+                                    onClick={() => item?.onClick()}
                                     buttonColor={item?.buttonColor ?? colors.keyColor}
                                     txtColor={item?.txtColor ?? '#fff'}
                                 >

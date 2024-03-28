@@ -23,8 +23,7 @@ export default function Comp5() {
                 <Txt color={colors.grey200}>{'시작해보세요.'}</Txt>
 
                 <Spacing size={18} />
-
-                <V.Row gap={10}>
+                <V.Row gap={10} flex={1}>
                     <Button
                         as="m"
                         onClick={() => router.push({

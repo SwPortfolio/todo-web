@@ -11,6 +11,8 @@ import { regEx } from '@/libs/utils/regEx'
 import CheckBoxs from './CheckBoxs'
 import CheckModals from './CheckModals'
 import { awaitExpression } from '@babel/types'
+
+// api
 import { signinAPI } from '@/_https/api/auth'
 
 //
@@ -22,36 +24,38 @@ interface isValuesProps {
 //
 export default function MemberSignIn() {
     const router: NextRouter = useRouter()
-    const textRef = useRef<HTMLTextAreaElement | null>(null)
+    // const textRef = useRef<HTMLTextAreaElement | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const [isValues, setIsValues] = useState<isValuesProps>({
-        email: 'qwe@qwe.com',
-        password: '1234',
+        email: '',
+        password: '',
     })
     //
     /// 제출하기
     const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsLoading(true);
-
-        // 회원가입 요청
         try {
+            setIsLoading(true);
+
             const res = await signinAPI({
-                email: isValues.email,
-                password: isValues.password,
+                email: 'qwe@qwe.com',
+                password: '1234',
             });
 
-            setIsLoading(false)
-            console.log('res : ', res.data);
+            setIsLoading(false);
             if (res.data.resCode === '0000') {
-                await router.replace({ query: { results: true, message: res.data.message.kor } })
+                const resData = res.data.body;
+                localStorage.setItem('accessToken', resData.token);
+                localStorage.setItem('memberId', resData.memberId);
+                localStorage.setItem('email', resData.email);
+                localStorage.setItem('nickname', resData.nickname);
+                await router.replace('/');
             } else {
-                await router.replace({ query: { results: false, message: res.data.message.kor } })
+
             }
         } catch (err) {
-            setIsLoading(false)
-            await router.replace({ query: { results: false } })
+            setIsLoading(false);
         }
     }
 
@@ -101,7 +105,7 @@ export default function MemberSignIn() {
                             )
                         }
                     >
-                        제출
+                        로그인
                     </Button>
                 </V.Form>
             </V.Column>
