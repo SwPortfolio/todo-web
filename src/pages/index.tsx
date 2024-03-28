@@ -1,5 +1,5 @@
 //libs
-import { V, Spacing } from '@/_ui/index'
+import { V, Spacing } from '@/_ui'
 import { screenSize } from '@/libs/themes'
 
 //components
@@ -20,12 +20,12 @@ export default function Index() {
                 <V.Container maxWidth={screenSize[3]} padding={{ top: 20, bottom: 40, horizontal: 20 }}>
                     <Spacing size={16} />
                     <Comp1 />
-                    <Spacing size={12} />
-                    <Comp2 />
-                    <Spacing size={54} />
-                    <Comp3 />
-                    <Spacing size={44} />
-                    <Comp4 />
+                    {/*<Spacing size={12} />*/}
+                    {/*<Comp2 />*/}
+                    {/*<Spacing size={54} />*/}
+                    {/*<Comp3 />*/}
+                    {/*<Spacing size={44} />*/}
+                    {/*<Comp4 />*/}
                     <Spacing size={44} />
                     <Comp5 />
                 </V.Container>

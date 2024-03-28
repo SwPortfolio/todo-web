@@ -15,38 +15,50 @@ export default function Comp5() {
         <>
             <V.Container>
                 <Txt as="h2" size={18}>
-                    {'Form 기능을\n빠르게 만들고 싶을땐?'}
+                    {'TODO 기능을\n빠르게 만들고 싶을땐?'}
                 </Txt>
 
                 <Spacing size={8} />
 
-                <Txt color={colors.grey200}>{'Form 기능을 만들때\n필요한 인풋들을 다양하게 준비해뒀어요'}</Txt>
+                <Txt color={colors.grey200}>{'시작해보세요.'}</Txt>
 
                 <Spacing size={18} />
 
                 <V.Row gap={10}>
                     <Button
                         as="m"
-                        onClick={() => router.push('/form-fields')}
+                        onClick={() => router.push({
+                            pathname: '/member/sign-up',
+                            query: { results: false }
+                        })}
                         txtColor="#fff"
                         buttonColor={colors.keyColor}
                     >
-                        지금 확인하기
+                        회원가입
                     </Button>
 
                     <Button
-                        variant="stroke"
                         as="m"
-                        onClick={() =>
-                            addToast({
-                                status: 'success',
-                                title: 'Jenga UI Toast',
-                                description: 'useToast를 통해 사용해보세요',
-                            })
-                        }
+                        onClick={() => router.push('/member/sign-in')}
+                        txtColor="#fff"
+                        buttonColor={colors.keyColor}
                     >
-                        Jenga Toast
+                        로그인
                     </Button>
+
+                    {/*<Button*/}
+                    {/*    variant="stroke"*/}
+                    {/*    as="m"*/}
+                    {/*    onClick={() =>*/}
+                    {/*        addToast({*/}
+                    {/*            status: 'success',*/}
+                    {/*            title: 'Jenga UI Toast',*/}
+                    {/*            description: 'useToast를 통해 사용해보세요',*/}
+                    {/*        })*/}
+                    {/*    }*/}
+                    {/*>*/}
+                    {/*    Jenga Toast*/}
+                    {/*</Button>*/}
                 </V.Row>
             </V.Container>
         </>

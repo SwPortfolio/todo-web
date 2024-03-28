@@ -8,6 +8,7 @@ import { MQ, colors } from '@/libs/themes'
 import SEO from '@/seo.config'
 import Fields from '@/libs/components/form-fields/Fields'
 import Result from '@/libs/components/form-fields/Result'
+import * as process from 'process'
 
 //
 export default function FormFields() {

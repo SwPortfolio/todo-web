@@ -24,8 +24,8 @@ export default function BottomNaviTabBar() {
       </BottomTabNavigator.Tab>
 
       <BottomTabNavigator.Tab
-        label="메시지"
-        href=""
+        label="TODO"
+        href="/"
         css={{
           color: router.pathname === '/2' ? colors.keyColor : colors.chiffon500,
         }}
@@ -36,35 +36,35 @@ export default function BottomNaviTabBar() {
         />
       </BottomTabNavigator.Tab>
 
-      <BottomTabNavigator.Tab
-        label="메모"
-        href=""
-        css={{
-          color: router.pathname === '/3' ? colors.keyColor : colors.chiffon500,
-        }}
-      >
-        <CopyIcon
-          width="100%"
-          fill={router.pathname === '/3' ? colors.keyColor : colors.chiffon500}
-        />
-      </BottomTabNavigator.Tab>
+      {/*<BottomTabNavigator.Tab*/}
+      {/*  label="메모"*/}
+      {/*  href="/"*/}
+      {/*  css={{*/}
+      {/*    color: router.pathname === '/3' ? colors.keyColor : colors.chiffon500,*/}
+      {/*  }}*/}
+      {/*>*/}
+      {/*  <CopyIcon*/}
+      {/*    width="100%"*/}
+      {/*    fill={router.pathname === '/3' ? colors.keyColor : colors.chiffon500}*/}
+      {/*  />*/}
+      {/*</BottomTabNavigator.Tab>*/}
 
       <BottomTabNavigator.Tab
         label="프로필"
-        href=""
+        href="/member/profile"
         css={{
-          color: router.pathname === '/4' ? colors.keyColor : colors.chiffon500,
+          color: router.pathname === '/member/profile' ? colors.keyColor : colors.chiffon500,
         }}
       >
         <ProfileIcon
           width="100%"
-          fill={router.pathname === '/4' ? colors.keyColor : colors.chiffon500}
+          fill={router.pathname === '/member/profile' ? colors.keyColor : colors.chiffon500}
         />
       </BottomTabNavigator.Tab>
 
       <BottomTabNavigator.Tab
         label="설정"
-        href=""
+        href="/"
         css={{
           color: router.pathname === '/5' ? colors.keyColor : colors.chiffon500,
         }}

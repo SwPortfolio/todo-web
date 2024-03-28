@@ -78,7 +78,7 @@ export default function Comp4() {
                     setIsOpen(false)
                     setIsDate(date)
                 }}
-            />
+             dateFormat={''}/>
         </>
     )
 }

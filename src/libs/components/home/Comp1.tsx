@@ -19,10 +19,10 @@ export default function Comp2() {
                 />
                 <V.Column gap={3}>
                     <Txt as="strong" size={17}>
-                        위젯 템플릿
+                        TODO
                     </Txt>
                     <Txt size={13} color={colors.grey200}>
-                        위젯으로 빠른 개발을 경험해봐요 🥰
+                        일정을 관리해요 🥰
                     </Txt>
                 </V.Column>
             </V.Row>

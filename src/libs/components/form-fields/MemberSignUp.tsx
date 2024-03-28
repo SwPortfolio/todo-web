@@ -10,7 +10,6 @@ import { regEx } from '@/libs/utils/regEx'
 //components
 import CheckBoxs from './CheckBoxs'
 import CheckModals from './CheckModals'
-import { awaitExpression } from '@babel/types'
 import { signupAPI } from '@/_https/api/auth'
 
 //
@@ -30,23 +29,23 @@ interface isValuesProps {
 }
 
 //
-export default function Fields() {
+export default function MemberSignUp() {
     const router: NextRouter = useRouter()
     const textRef = useRef<HTMLTextAreaElement | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const [isValues, setIsValues] = useState<isValuesProps>({
         profileImg: '',
-        name: '',
-        tel: '',
-        email: '',
-        password: '',
-        gender: '',
-        price: '',
+        name: '테스트',
+        tel: '01011111111',
+        email: 'qwe@qwe.com',
+        password: '1234',
+        gender: '남성',
+        price: '0',
         date: new Date(),
-        context: '',
-        check1: false,
-        check2: false,
+        context: 'qwe',
+        check1: true,
+        check2: true,
         check3: false,
     })
 
@@ -64,10 +63,24 @@ export default function Fields() {
         e.preventDefault();
         setIsLoading(true);
 
-        setTimeout(() => {
+        // 회원가입 요청
+        try {
+            const res = await signupAPI({
+                email: isValues.email,
+                password: isValues.password,
+                nickname: isValues.name,
+            });
+
             setIsLoading(false)
-            router.push({ query: { results: true } })
-        }, 1500)
+            if (res.data.resCode === '0000') {
+                await router.replace({ query: { results: true, message: res.data.message.kor } });
+            } else {
+                await router.replace({ query: { results: false, message: res.data.message.kor } });
+            }
+        } catch (err) {
+            setIsLoading(false)
+            await router.replace({ query: { results: false } })
+        }
     }
 
     return (
@@ -87,7 +100,7 @@ export default function Fields() {
                     {/* ----- 텍스트 타입 인풋 : TextField ----- */}
                     <Input label="이름" labelEdge="(필수)">
                         <Input.TextField
-                            placeholder="이름을 입력하세요"
+                            placeholder="이름을 입력하세요@@"
                             type="text"
                             name="name"
                             value={isValues.name}
@@ -120,8 +133,6 @@ export default function Fields() {
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 setIsValues({ ...isValues, password: e.target.value })
                             }
-                            // error={!!isValues.email && !regEx.email.test(isValues.email)}
-                            // errorMessage="이메일 형식으로 입력하세요"
                         />
                     </Input>
 

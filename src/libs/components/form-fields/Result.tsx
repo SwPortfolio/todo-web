@@ -9,7 +9,6 @@ import { Button, Spacing } from '@/_ui';
 
 export default function Result() {
   const router: NextRouter = useRouter();
-
   return (
     <>
       <Image
@@ -21,8 +20,8 @@ export default function Result() {
 
       <Spacing size={20} />
 
-      <Button width="100%" onClick={() => router.push('/')}>
-        확인하기
+      <Button width="100%" onClick={() => router.push('/member/sign-in')}>
+        로그인
       </Button>
     </>
   );
