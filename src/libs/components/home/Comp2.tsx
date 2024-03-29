@@ -1,9 +1,29 @@
 //libs
 import { colors } from '@/libs/themes/colors'
 import { Spacing, Txt, TxtSpan, V } from '@/_ui'
+import { useEffect, useState } from 'react'
+import { CalenderIcon } from '@/libs/assets/icons'
+
+interface dutyProps {
+    dutyName: string,
+    memo: string,
+    priority: number,
+    deadline: string
+}
 
 //
 export default function Comp2() {
+
+    const [isNow, setNow] = useState<Date>(new Date());
+    const [isDuty, setDuty] = useState<dutyProps[]>([
+        { dutyName: '야미 딜리버리 api', memo: '매장, 포장, 배달 구분', priority: 1, deadline: '2024-03-29 11:00:00' },
+        { dutyName: 'todo nextjs', memo: '', priority: 1, deadline: '2024-04-05 11:00:00' }
+    ]);
+
+    useEffect(() => {
+        // 금일 할일 목록 조회
+    }, [])
+
     return (
         <V.Container
             padding={{ vertical: 20, horizontal: 16 }}
@@ -11,42 +31,32 @@ export default function Comp2() {
             borderRadius={16}
         >
             <Txt as="h1" size={18}>
-                오직 위젯들로만 <br />
-                템플릿 UI를 만들었어요
+                { `${isNow?.getFullYear()}-${(1 + isNow?.getMonth())}-${isNow?.getDate()}` } 할일
             </Txt>
 
             <Spacing size={10} />
 
             <Txt color="#797979" size={14}>
-                {'위젯을 조합하여 빠르게 UI를 만들어보세요\nCSS없이 빠르게 UI를 만들 수 있어요😄'}
+                {'금일 할일이 있습니다. 중요한 일부터 정렬되어있습니다.😄'}
             </Txt>
 
             <Spacing size={20} />
 
-            <V.Items direction="horizontal" align="start" wrap="wrap" gap={4} crossGap={6}>
-                {[
-                    '높은 코드 가독성',
-                    'CSS 불필요',
-                    '빠른 레이아웃 구현',
-                    'UI 제작 및 작업 생산성 UP',
-                    '반응형 UI 위젯',
-                    '다양한 인풋 제공',
-                    '네이티브 모달 제공',
-                    '네이티브 앱의 UI 제공',
-                    '빠른 렌더링',
-                    '성능 최적화된 위젯',
-                    '이미지 최적화',
-                ].map((item, i) => (
+            <V.Items direction="vertical" align="start" wrap="wrap" gap={5} crossGap={10}>
+                {isDuty.map((item, i) => (
                     <V.Item
                         key={i}
-                        width="auto"
-                        padding={{ vertical: 6, horizontal: 8 }}
+                        width="100%"
+                        padding={{ vertical: 6, horizontal: 20 }}
                         border={{ solid: 1, position: 'all', color: colors.chiffon400 }}
                         borderRadius={100}
                         txtColor="#555"
                         txtSize={14}
+                        lineHeight={2}
+                        backgroundColor={colors.grey600}
                     >
-                        {item}
+                        <Txt size={15} as={'h2'} color={'white'}>{item.dutyName}</Txt>
+                        <Txt size={11} as={'h4'} color={colors.red}>📆 {item.deadline}</Txt>
                     </V.Item>
                 ))}
             </V.Items>

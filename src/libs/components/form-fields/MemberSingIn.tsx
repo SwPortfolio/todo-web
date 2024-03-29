@@ -39,13 +39,14 @@ export default function MemberSignIn() {
             setIsLoading(true);
 
             const res = await signinAPI({
-                email: 'qwe@qwe.com',
-                password: '1234',
+                email: isValues.email,
+                password: isValues.password,
             });
 
             setIsLoading(false);
             if (res.data.resCode === '0000') {
                 const resData = res.data.body;
+                console.log(resData);
                 localStorage.setItem('accessToken', resData.token);
                 localStorage.setItem('memberId', resData.memberId);
                 localStorage.setItem('email', resData.email);
